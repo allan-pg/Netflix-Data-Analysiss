@@ -164,15 +164,17 @@ ROLLBACK;
 SET autocommit = 1;
 
 -------------------------- IFNULL ------------------------
--- it takes two arguments and checks if a column is null if true its null the second argument is filled in the null column
+-- it takes two arguments 
+-- such that if expr1 = expr2 then it sets the value to null
+-- But if expr1 <> expr2 then it returns expr1
 SELECT * from netflix_store;
--- from our dataset director and country columns have not given values were null and this how i set it to not given
+
 
 SELECT show_id,
 		ifnull(director, "Not Given") as director
 FROM netflix_store
 ORDER BY release_year desc;
--- the above statements checks if director column is null if true is null the null value is set to `Not Given`
+-- the above statements if director = not given it sets to null if not it remains as director` 
 
 ----------------------------- COALESCE ---------------------------------------------------------
 -- coalesce takes more arguments but works like if null
